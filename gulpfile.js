@@ -14,6 +14,7 @@ var plugins = require('gulp-load-plugins')({
 
 var config = {
   dest: 'dist/',
+  sass: 'web/src/**/*.scss',
   webSrc: 'web/src/**/*.js',
   webTest: 'web/test/**/*.spec.js',
   webCoverage: 'coverage/web/',
@@ -36,6 +37,20 @@ gulp.task('hint', function() {
     .pipe(lintPipeline());
 });
 
+gulp.task('sass', ['clean'], function() {
+  return gulp.src([config.sass], {base: './'})
+    .pipe(plugins.sourcemaps.init())
+    .pipe(plugins.sass())
+    .pipe(plugins.concat('web-dashboard.css'))
+    .pipe(plugins.sourcemaps.write('./'))
+    .pipe(gulp.dest(config.dest));
+});
+
+gulp.task('html', ['clean'], function() {
+  return gulp.src('web/src/index.html')
+    .pipe(gulp.dest(config.dest));
+  })
+
 function getSourcePipeline(concatFilename) {
   return lazypipe()
     .pipe(lintPipeline)
@@ -49,7 +64,7 @@ function getSourcePipeline(concatFilename) {
     .pipe(plugins.sourcemaps.write, './');
 }
 
-gulp.task( 'build', ['clean'], function() {
+gulp.task( 'build', ['clean', 'sass', 'html'], function() {
   return gulp.src([config.webSrc], {base: './'})
     .pipe(getSourcePipeline('web-dashboard.js')())
     .pipe(gulp.dest(config.dest))
@@ -112,8 +127,8 @@ gulp.task('coverage', ['build', 'test-deps'], function(done) {
   runKarmaTests(done, true);
 });
 
-gulp.task('dev', ['build', 'test'], function() {
-  gulp.watch([config.webSrc, config.webTest], ['build', 'test']);
+gulp.task('dev', ['build'], function() {
+  gulp.watch([config.webSrc, config.webTest, config.sass], ['build']);
 });
 
 gulp.task('default', ['hint', 'build', 'test', 'coverage']);
