@@ -1,0 +1,10 @@
+wd-toolbar {
+    display: block;
+    padding: 10px;
+    background-color: #3FC380;
+
+    > * {
+        display: inline-block;
+        margin: 0 10px 0 10px;
+    }
+}

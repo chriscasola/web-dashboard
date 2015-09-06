@@ -1,0 +1,10 @@
+@mixin wd-tile() {
+    height: 200px;
+    min-width: 225px;
+    border: 1px solid black;
+    border-radius: 3px;
+    display: block;
+    margin: 10px;
+    padding: 5px;
+    flex: 1 1 250px;
+}

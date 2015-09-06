@@ -1,0 +1,5 @@
+@import '../tile/tile';
+
+wd-tile-chooser {
+    @include wd-tile();
+}

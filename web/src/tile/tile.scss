@@ -1,0 +1,17 @@
+@import 'tile';
+
+wd-tile {
+    @include wd-tile();
+}
+
+.wd-tile-header {
+    font-size: .75em;
+    border-bottom: 1px solid black;
+}
+
+.wd-tile-body {
+    margin-top: 5px;
+    img {
+        max-width: 100%;
+    }
+}

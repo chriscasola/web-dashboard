@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Dashboard</title>
+    <script type="text/javascript" src="bower_components/lodash/lodash.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="bower_components/angular-smarter-models/angular-smarter-models.js"></script>
+    <script type="text/javascript" src="web-dashboard.js"></script>
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="web-dashboard.css">
+</head>
+<body ng-app="web-dashboard" ng-strict-di>
+  <div class="wd-toolbar">
+    <wd-toolbar></wd-toolbar>
+  </div>
+  <div class="wd-content" ng-view></div>
+</body>
+</html>
