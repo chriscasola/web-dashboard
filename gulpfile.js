@@ -49,7 +49,7 @@ gulp.task('sass', ['clean'], function() {
 gulp.task('html', ['clean'], function() {
   return gulp.src('web/src/index.html')
     .pipe(gulp.dest(config.dest));
-  })
+});
 
 function getSourcePipeline(concatFilename) {
   return lazypipe()
