@@ -6,7 +6,18 @@ wd-tile {
 
 .wd-tile-header {
     font-size: .75em;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ABB7B7;
+
+    > i {
+        font-size: 14px;
+        float: right;
+        cursor: pointer;
+        transition: font-size 0.25s;
+
+        &:hover {
+            font-size: 15px;
+        }
+    }
 }
 
 .wd-tile-body {

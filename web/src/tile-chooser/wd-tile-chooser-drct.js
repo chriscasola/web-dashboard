@@ -5,7 +5,7 @@ function wdTileChooserDrct() {
     controller: 'wdTileChooserCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
-    template: '<div>+</div>',
+    template: '<div><i class="fa fa-plus"></i></div>',
   };
 }
 

@@ -8,7 +8,7 @@ function wdTileDrct() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: [
-      `<div class="wd-tile-header">Tile Header</div>`,
+      `<div class="wd-tile-header">Tile Header<i class="fa fa-cog"></i></div>`,
       `<div class="wd-tile-body">`,
         `<a ng-href="{{ ctrl.model.props.link }}">`,
           `<img ng-src="{{ ctrl.model.props.imageUrl }}">`,
