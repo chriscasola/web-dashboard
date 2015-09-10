@@ -1,0 +1,30 @@
+.wd-notifications {
+	position: absolute;
+	top: 45px;
+	right: 0px;
+
+	> div {
+		cursor: default;
+		border: 3px solid #2ECC71;
+		border-radius: 10px;
+		padding: 5px;
+		margin-bottom: 10px;
+		overflow: auto;
+		width: 225px;
+		background-color: #C8F7C5;
+		opacity: 0.95;
+		transition: opacity 0.25s;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		&.wd-notification-moving {
+			opacity: 0;
+		}
+	}
+}
+
+.wd-notification-header {
+	font-weight: bold;
+}
