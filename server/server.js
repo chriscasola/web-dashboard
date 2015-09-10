@@ -1,10 +1,12 @@
 var path = require('path');
 var _ = require('lodash');
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 var data = require('./data.json');
 
+app.use(bodyParser.json());
 app.use('/bower_components', express.static(path.join(__dirname, '../bower_components/')));
 app.use(express.static(path.join(__dirname, '../dist/')));
 
@@ -14,6 +16,10 @@ app.get('/tiles', function(req, res) {
 
 app.get('/tiles/:id', function(req, res) {
   res.status(200).send(_.findWhere(data.tiles, {id: parseInt(req.params.id)}));
+});
+
+app.post('/tiles/:id', function(req, res) {
+  data.tiles[parseInt(req.params.id)] = req.body;
 });
 
 app.get('/layouts', function(req, res) {
