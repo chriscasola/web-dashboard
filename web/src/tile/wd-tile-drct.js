@@ -14,7 +14,8 @@ function wdTileDrct() {
   };
 }
 
-function wdTileCtrl(wdTiles) {
+function wdTileCtrl(wdTiles, wdNotifier) {
+  this.wdNotifier = wdNotifier;
   this.inEditMode = false;
   wdTiles.model.getAsync({id: this.tileId()}).then(model => {
     this.model = model;
@@ -27,10 +28,15 @@ wdTileCtrl.prototype.edit = function() {
 
 wdTileCtrl.prototype.done = function() {
   this.inEditMode = false;
-  // this.model.save(); TODO
+  this.model.save().then(() => {
+    this.wdNotifier.notify({
+      header: 'Save Complete',
+      body: 'The tile has been saved.',
+    });
+  });
 };
 
-wdTileCtrl.$inject = ['wdTiles'];
+wdTileCtrl.$inject = ['wdTiles', 'wdNotifier'];
 
 angular.module('web-dashboard')
   .controller('wdTileCtrl', wdTileCtrl)

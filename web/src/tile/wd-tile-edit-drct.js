@@ -9,10 +9,8 @@ function wdTileEditDrct() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: [
-      `<form>`,
-        `Link: <input type="text" ng-model="ctrl.tileModel().props.link">`,
-        `Image: <input type="text" ng-model="ctrl.tileModel().props.imageUrl">`,
-      `</form>`,
+      `<p>Link: <input type="text" ng-model="ctrl.tileModel().props.link"></p>`,
+      `<p>Image: <input type="text" ng-model="ctrl.tileModel().props.imageUrl"></p>`,
       `<button ng-click="ctrl.onDone()">Done</button>`,
     ].join('\n'),
   };
