@@ -20,6 +20,7 @@ app.get('/tiles/:id', function(req, res) {
 
 app.post('/tiles/:id', function(req, res) {
   data.tiles[parseInt(req.params.id)] = req.body;
+  res.status(200).send();
 });
 
 app.get('/layouts', function(req, res) {
