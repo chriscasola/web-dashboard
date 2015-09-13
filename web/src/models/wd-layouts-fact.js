@@ -7,11 +7,6 @@ function wdLayoutFact($http, smModelFactory) {
         return response.data;
       });
     },
-    listTiles: function(layoutId) {
-      return $http.get('/layouts/' + layoutId + '/tiles').then(function(response) {
-        return response.data;
-      });
-    },
     model: model,
   };
 }

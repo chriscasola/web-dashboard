@@ -8,17 +8,16 @@ function wdContainerDrct() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: [
-      `<wd-tile ng-repeat="tile in ctrl.tiles" tile-id="::tile"></wd-tile>`,
+      `<wd-tile ng-repeat="tile in ctrl.getLayout().props.tiles" tile-id="::tile"></wd-tile>`,
       `<wd-tile-chooser></wd-tile-chooser>`,
     ].join('\n'),
   };
 }
 
 function wdContainerCtrl(wdLayouts) {
-  this.tiles = [];
-  wdLayouts.listTiles(this.layoutId()).then(tiles => {
-    this.tiles = tiles;
-  });
+  this.getLayout = function() {
+    return wdLayouts.model.get({id: this.layoutId()});
+  };
 }
 
 wdContainerCtrl.$inject = ['wdLayouts'];
