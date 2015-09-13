@@ -23,6 +23,13 @@ app.post('/tiles/:id', function(req, res) {
   res.status(200).send();
 });
 
+app.put('/tiles', function(req, res) {
+  var nextId = data.tiles.length;
+  req.body.id = nextId;
+  data.tiles.push(req.body);
+  res.status(200).send(req.body);
+});
+
 app.get('/layouts', function(req, res) {
   var layouts = _.map(data.layouts, function(layout) {
     return _.pick(layout, 'id', 'name');
@@ -38,6 +45,11 @@ app.get('/layouts/:id/tiles', function(req, res) {
 app.get('/layouts/:id', function(req, res) {
   res.status(200).send(_.findWhere(data.layouts, {id: req.params.id}));
 });
+
+app.post('/layouts/:id', function(req, res) {
+  var layoutId = _.indexOf(data.layouts, _.findWhere(data.layouts, {id: req.params.id}));
+  data.layouts[layoutId] = req.body;
+})
 
 app.listen(3000, function() {
   console.log('server started');
