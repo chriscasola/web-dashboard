@@ -23,6 +23,19 @@ app.post('/tiles/:id', function(req, res) {
   res.status(200).send();
 });
 
+app.delete('/tiles/:id', function(req, res) {
+  var tile = _.findWhere(data.tiles, {id: parseInt(req.params.id)});
+  var tileIndex = _.indexOf(data.tiles, tile);
+  data.tiles.splice(tileIndex, 1);
+
+  _.each(data.layouts, function(layout) {
+    layout.tiles = _.filter(layout.tiles, function(tileId) {
+      return tileId !== parseInt(req.params.id);
+    });
+  });
+  res.status(200).send();
+})
+
 app.put('/tiles', function(req, res) {
   var nextId = data.tiles.length;
   req.body.id = nextId;
