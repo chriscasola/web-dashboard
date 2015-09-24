@@ -3,12 +3,13 @@ function wdTileDrct() {
     restrict: 'E',
     scope: {
       tileId: '&',
+      onDelete: '&',
     },
     controller: 'wdTileCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
     template: [
-      `<wd-tile-content tile-model="ctrl.model" on-edit="ctrl.edit()" ng-if="!ctrl.inEditMode"></wd-tile-content>`,
+      `<wd-tile-content tile-model="ctrl.model" on-edit="ctrl.edit()" on-delete="ctrl.delete()" ng-if="!ctrl.inEditMode"></wd-tile-content>`,
       `<wd-tile-edit tile-model="ctrl.model" on-done="ctrl.done()" ng-if="ctrl.inEditMode"></wd-tile-edit>`,
     ].join('\n'),
   };
@@ -24,6 +25,11 @@ function wdTileCtrl(wdTiles, wdNotifier) {
 
 wdTileCtrl.prototype.edit = function() {
   this.inEditMode = true;
+};
+
+wdTileCtrl.prototype.delete = function() {
+  this.model.delete();
+  this.onDelete({tileId: this.tileId()});
 };
 
 wdTileCtrl.prototype.done = function() {

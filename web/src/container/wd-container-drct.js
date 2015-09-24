@@ -8,7 +8,7 @@ function wdContainerDrct() {
     controllerAs: 'ctrl',
     bindToController: true,
     template: [
-      `<wd-tile ng-repeat="tile in ctrl.getLayout().props.tiles" tile-id="::tile"></wd-tile>`,
+      `<wd-tile ng-repeat="tile in ctrl.getLayout().props.tiles" tile-id="::tile" on-delete="ctrl.deleteTile(tileId)"></wd-tile>`,
       `<wd-tile-chooser></wd-tile-chooser>`,
     ].join('\n'),
   };
@@ -17,6 +17,13 @@ function wdContainerDrct() {
 function wdContainerCtrl(wdLayouts) {
   this.getLayout = function() {
     return wdLayouts.model.get({id: this.layoutId()});
+  };
+
+  this.deleteTile = function(tileId) {
+    const layout = this.getLayout();
+    layout.props.tiles = _.filter(layout.props.tiles, function(id) {
+      return id !== tileId;
+    });
   };
 }
 
